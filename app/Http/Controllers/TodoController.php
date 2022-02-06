@@ -76,9 +76,9 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
-            'name' => 'requred|max:255',
+            'name' => 'required|max:255',
         ]);
-        Todo::whereID($id)->update($updateData);
+        Todo::whereId($id)->update($updateData);
         return redirect('/todos')->with('completed', 'Todo has been updated');
     }
 

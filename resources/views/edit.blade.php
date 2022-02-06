@@ -22,24 +22,12 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('students.update', $student->id) }}">
+      <form method="post" action="{{ route('todos.update', $todo->id) }}">
           <div class="form-group">
               @csrf
               @method('PATCH')
               <label for="name">Name</label>
-              <input type="text" class="form-control" name="name" value="{{ $student->name }}"/>
-          </div>
-          <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="email" value="{{ $student->email }}"/>
-          </div>
-          <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="tel" class="form-control" name="phone" value="{{ $student->phone }}"/>
-          </div>
-          <div class="form-group">
-              <label for="password">Password</label>
-              <input type="text" class="form-control" name="password" value="{{ $student->password }}"/>
+              <input type="text" class="form-control" name="name" value="{{ $todo->name }}"/>
           </div>
           <button type="submit" class="btn btn-block btn-danger">Update User</button>
       </form>
