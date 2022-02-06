@@ -11,11 +11,15 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
+  <div class="d-flex justify-content-center">
+      <h1>Todo App</h1>
+    </div><br>
+  
   <table class="table">
     <thead>
         <tr class="table-warning">
           <td>ID</td>
-          <td>Name</td>
+          <td>Task</td>
           <td class="text-center">Action</td>
         </tr>
     </thead>
@@ -29,7 +33,7 @@
                 <form action="{{ route('todos.destroy', $todos->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm"" type="submit">Delete</button>
+                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                   </form>
             </td>
         </tr>
@@ -37,4 +41,8 @@
     </tbody>
   </table>
 <div>
+
+<div class="d-flex justify-content-center">
+<button class="btn btn-success" type="button" onclick="window.location='{{ url("todos/create") }}'">Create Task</button>
+</div>
 @endsection

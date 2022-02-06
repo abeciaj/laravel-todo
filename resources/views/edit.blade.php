@@ -26,10 +26,11 @@
           <div class="form-group">
               @csrf
               @method('PATCH')
-              <label for="name">Name</label>
+              <label for="name">Task</label>
               <input type="text" class="form-control" name="name" value="{{ $todo->name }}"/>
           </div>
-          <button type="submit" class="btn btn-block btn-danger">Update User</button>
+          <button type="submit" class="btn btn-block btn-primary">Update Task</button>
+          <button type="button" class="btn btn-block btn-danger" onclick="window.location='{{ url("/") }}'">Cancel</button>
       </form>
   </div>
 </div>
