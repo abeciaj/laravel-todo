@@ -16,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-/**
- * Route::get('/', function () {
- *     return view('welcome');
- * });
- */
+
+// Route::get('/',TodoController::class, function () {
+//     return view('index');
+// });
+
+// Route::get('/todo',[TodoController::class, 'index']);
+
+Route::get('/', [TodoController::class, 'index']);
+
 Route::resource('todos', TodoController::class);
