@@ -8,6 +8,8 @@ class CreateTodosTable extends Migration
 {
     /**
      * Run the migrations.
+     * 
+     * To create database table
      *
      * @return void
      */
@@ -22,6 +24,8 @@ class CreateTodosTable extends Migration
 
     /**
      * Reverse the migrations.
+     * 
+     * Drop creating table if it already existed
      *
      * @return void
      */

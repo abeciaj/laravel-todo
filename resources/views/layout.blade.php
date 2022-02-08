@@ -1,3 +1,5 @@
+{{-- Template for all html files --}}
+
 <!DOCTYPE html>
 <html>
    <head>
