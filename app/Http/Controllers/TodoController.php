@@ -40,7 +40,7 @@ class TodoController extends Controller
             'name' => 'required|max:255',
         ]);
         $todo = Todo::create($storeData);
-        return redirect('/todos')->with('completed', 'Todo has been stored');
+        return redirect('/')->with('success', 'Todo has been stored');
     }
 
     /**
@@ -79,7 +79,7 @@ class TodoController extends Controller
             'name' => 'required|max:255',
         ]);
         Todo::whereId($id)->update($updateData);
-        return redirect('/todos')->with('completed', 'Todo has been updated');
+        return redirect('/')->with('success', 'Todo has been updated');
     }
 
     /**
@@ -92,6 +92,6 @@ class TodoController extends Controller
     {
         $todo = Todo::findOrFail($id);
         $todo->delete();
-        return redirect('/todos')->with('completed', 'Todo has been deleted');
+        return redirect('/')->with('success', 'Todo has been deleted');
     }
 }
