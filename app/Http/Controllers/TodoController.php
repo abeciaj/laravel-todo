@@ -10,7 +10,7 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return index view
      */
     public function index()
     {
@@ -21,7 +21,7 @@ class TodoController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return create view
      */
     public function create()
     {
@@ -32,7 +32,7 @@ class TodoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return redirect to / with success message
      */
     public function store(Request $request)
     {
@@ -44,21 +44,10 @@ class TodoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return edit view
      */
     public function edit($id)
     {
@@ -71,7 +60,7 @@ class TodoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return redirect to / with success message
      */
     public function update(Request $request, $id)
     {
@@ -86,7 +75,7 @@ class TodoController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return redirect to / with success message
      */
     public function destroy($id)
     {
