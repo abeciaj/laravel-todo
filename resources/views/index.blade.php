@@ -40,15 +40,20 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($todo as $todos)
+      @foreach($todos as $todo)
+      
         <tr>
-          <td>{{$todos->id}}</td>
-          <td>{{$todos->name}}</td>
+          <td>{{ $todo->id }}</td>
+          <td>{{ $todo->name }}</td>
           <td class="text-center">
             {{-- todos.edit function call --}}
-            <a href="{{ route('todos.edit', $todos->id)}}" class="btn btn-primary btn-sm"">Edit</a>
+            {{-- <a href="{{ route('todos.edit', $todos->id)}}" class="btn btn-primary btn-sm"">Edit</a> --}}
+            {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal-{{ $todo->id }}">
+              Edit
+            </button> --}}
+            <a class="btn btn-primary btn-sm update-button" role="button" data-task-update="{{ route('todos.update', $todo->id) }}" data-toggle="modal" data-target="#update-modal">Delete</a>
             {{-- todos.destroy function call --}}
-            <form action="{{ route('todos.destroy', $todos->id)}}" method="post" style="display: inline-block">
+            <form action="{{ route('todos.destroy', $todo->id) }}" method="post" style="display: inline-block">
               @csrf
               @method('DELETE')
               <button class="btn btn-danger btn-sm" type="submit">Delete</button>
@@ -59,10 +64,11 @@
     </tbody>
   </table>
 <div>
+  
 
 <div class="d-flex justify-content-center">
 {{-- todos/create function call --}}
-  <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
+  <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#createModalCenter">
     Create Task
   </button>
 </div>
@@ -71,11 +77,11 @@
 
 
 <!-- Create Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="createModalCenter" tabindex="-1" role="dialog" aria-labelledby="createModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Create Task</h5>
+        <h5 class="modal-title" id="createModalLongTitle">Create Task</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -96,5 +102,42 @@
     </div>
   </div>
 </div>
+
+<!-- Update Modal -->
+<div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="updateModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLongTitle">Update Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form method="post" id ="update-form" action="">
+        <div class="modal-body">
+          <div class="form-group">
+            @csrf
+            @method('PATCH')
+            <h3>{{ $todo->id }}</h3>
+            <label for="name">Task</label>
+            {{-- Displays the current value of name associated with the $id --}}
+            <input type="text" class="form-control" id="name" name="name" value="{{ $todo->name }}"/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('.update-button').on('click', function () {
+    $('#update-form').attr('action', $(this).data('task-update'));
+});
+</script>
 
 @endsection
