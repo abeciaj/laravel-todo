@@ -51,7 +51,7 @@
             {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updateModal-{{ $todo->id }}">
               Edit
             </button> --}}
-            <a class="btn btn-primary btn-sm update-button" role="button" data-task-update="{{ route('todos.update', $todo->id) }}" data-toggle="modal" data-target="#update-modal">Delete</a>
+            <a class="btn btn-primary btn-sm update-button" role="button" data-task-update="{{ route('todos.update', $todo->id) }}" data-toggle="modal" data-target="#update-modal">Update</a>
             {{-- todos.destroy function call --}}
             <form action="{{ route('todos.destroy', $todo->id) }}" method="post" style="display: inline-block">
               @csrf
