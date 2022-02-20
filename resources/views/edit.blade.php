@@ -37,9 +37,9 @@
           <div class="form-group">
               @csrf
               @method('PATCH')
-              <label for="name">Task</label>
+              <label for="task">Task</label>
               {{-- Displays the current value of name associated with the $id --}}
-              <input type="text" class="form-control" name="name" value="{{ $todo->name }}"/>
+              <input type="text" class="form-control" name="task" value="{{ $todo->task }}"/>
           </div>
           <button type="submit" class="btn btn-block btn-primary">Update Task</button>
           {{-- Redirects to / --}}

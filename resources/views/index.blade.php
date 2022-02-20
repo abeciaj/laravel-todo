@@ -34,7 +34,7 @@
         @foreach($todo as $todos)
         <tr>
             <td>{{$todos->id}}</td>
-            <td>{{$todos->name}}</td>
+            <td>{{$todos->task}}</td>
             <td class="text-center">
                 {{-- todos.edit function call --}}
                 <a href="{{ route('todos.edit', $todos->id)}}" class="btn btn-primary btn-sm"">Edit</a>

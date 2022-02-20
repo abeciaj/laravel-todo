@@ -37,7 +37,7 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $storeData = $request->validate([
-            'name' => 'required|max:255',
+            'task' => 'required|max:255',
         ]);
         $todo = Todo::create($storeData);
         return redirect('/')->with('success', 'Todo has been stored');
@@ -65,7 +65,7 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
-            'name' => 'required|max:255',
+            'task' => 'required|max:255',
         ]);
         Todo::whereId($id)->update($updateData);
         return redirect('/')->with('success', 'Todo has been updated');
