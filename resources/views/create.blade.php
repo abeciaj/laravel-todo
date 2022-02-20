@@ -36,8 +36,8 @@
       <form method="post" action="{{ route('todos.store') }}">
           <div class="form-group">
               @csrf
-              <label for="name">Task</label>
-              <input type="text" class="form-control" name="name"/>
+              <label for="task">Task</label>
+              <input type="text" class="form-control" name="task"/>
           </div>
           <button type="submit" class="btn btn-block btn-primary">Create Task</button>
           {{-- Redirects to / --}}
