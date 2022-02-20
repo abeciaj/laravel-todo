@@ -42,7 +42,6 @@
     <tbody>
       @foreach($todo as $todos)
         <tr>
-<<<<<<< HEAD
             <td>{{$todos->id}}</td>
             <td>{{$todos->task}}</td>
             <td class="text-center">
@@ -55,20 +54,6 @@
                   <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                 </form>
             </td>
-=======
-          <td>{{$todos->id}}</td>
-          <td>{{$todos->name}}</td>
-          <td class="text-center">
-            {{-- todos.edit function call --}}
-            <a href="{{ route('todos.edit', $todos->id)}}" class="btn btn-primary btn-sm"">Edit</a>
-            {{-- todos.destroy function call --}}
-            <form action="{{ route('todos.destroy', $todos->id)}}" method="post" style="display: inline-block">
-              @csrf
-              @method('DELETE')
-              <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-            </form>
-          </td>
->>>>>>> b99e819 (Create modal for inserting data)
         </tr>
       @endforeach
     </tbody>
@@ -99,8 +84,8 @@
         <div class="modal-body">
           <div class="form-group">
             @csrf
-            <label for="name">Task</label>
-            <input type="text" class="form-control" name="name"/>
+            <label for="task">Task</label>
+            <input type="text" class="form-control" name="task"/>
           </div>
         </div>
         <div class="modal-footer">
