@@ -16,6 +16,15 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
+  @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+    </div><br />
+  @endif
   <div class="d-flex justify-content-center">
       <h1>Todo App</h1>
     </div><br>
@@ -24,36 +33,68 @@
 
   <table class="table">
     <thead>
-        <tr class="table-warning">
-          <td>ID</td>
-          <td>Task</td>
-          <td class="text-center">Action</td>
-        </tr>
+      <tr class="table-warning">
+        <td>ID</td>
+        <td>Task</td>
+        <td class="text-center">Action</td>
+      </tr>
     </thead>
     <tbody>
-        @foreach($todo as $todos)
+      @foreach($todos as $todo)
         <tr>
-            <td>{{$todos->id}}</td>
-            <td>{{$todos->task}}</td>
+            <td>{{$todo->id}}</td>
+            <td>{{$todo->task}}</td>
             <td class="text-center">
-                {{-- todos.edit function call --}}
-                <a href="{{ route('todos.edit', $todos->id)}}" class="btn btn-primary btn-sm"">Edit</a>
-                {{-- todos.destroy function call --}}
-                <form action="{{ route('todos.destroy', $todos->id)}}" method="post" style="display: inline-block">
+                {{-- todo.edit function call --}}
+                <a href="{{ route('todos.edit', $todo->id)}}" class="btn btn-primary btn-sm"">Edit</a>
+                {{-- todo.destroy function call --}}
+                <form action="{{ route('todos.destroy', $todo->id)}}" method="post" style="display: inline-block">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                 </form>
             </td>
         </tr>
-        @endforeach
+      @endforeach
     </tbody>
   </table>
 <div>
+  
 
 <div class="d-flex justify-content-center">
 {{-- todos/create function call --}}
+  <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#createModalCenter">
+    Create Task
+  </button>
+</div>
 
-<a href="{{ route('todos.create')}}" class="btn btn-success btn-lg"">Create Task</a>
+<!-- Create Button trigger modal -->
+
+
+<!-- Create Modal -->
+<div class="modal fade" id="createModalCenter" tabindex="-1" role="dialog" aria-labelledby="createModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createModalLongTitle">Create Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <form method="post" action="{{ route('todos.store') }}">
+        <div class="modal-body">
+          <div class="form-group">
+            @csrf
+            <label for="task">Task</label>
+            <input type="text" class="form-control" name="task"/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 @endsection
