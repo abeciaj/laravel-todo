@@ -14,8 +14,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todo = Todo::all();
-        return view('index', compact('todo'));
+        $todos = Todo::all();
+        return view('index', compact('todos'));
     }
 
     /**
@@ -39,8 +39,8 @@ class TodoController extends Controller
         $storeData = $request->validate([
             'task' => 'required|max:255',
         ]);
-        $todo = Todo::create($storeData);
-        return redirect('/')->with('success', 'Todo has been stored');
+        $todos = Todo::create($storeData);
+        return redirect('/')->with('success', 'Task has been stored');
     }
 
     /**
@@ -51,8 +51,8 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        $todo = Todo::findOrFail($id);
-        return view('edit', compact('todo'));
+        $todos = Todo::findOrFail($id);
+        return view('edit', compact('todos'));
     }
 
     /**
@@ -68,7 +68,7 @@ class TodoController extends Controller
             'task' => 'required|max:255',
         ]);
         Todo::whereId($id)->update($updateData);
-        return redirect('/')->with('success', 'Todo has been updated');
+        return redirect('/')->with('success', 'Task has been updated');
     }
 
     /**
@@ -79,8 +79,8 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        $todo = Todo::findOrFail($id);
-        $todo->delete();
-        return redirect('/')->with('success', 'Todo has been deleted');
+        $todos = Todo::findOrFail($id);
+        $todos->delete();
+        return redirect('/')->with('success', 'Task has been deleted');
     }
 }
