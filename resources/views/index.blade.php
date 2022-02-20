@@ -40,15 +40,15 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($todo as $todos)
+      @foreach($todos as $todo)
         <tr>
-            <td>{{$todos->id}}</td>
-            <td>{{$todos->task}}</td>
+            <td>{{$todo->id}}</td>
+            <td>{{$todo->task}}</td>
             <td class="text-center">
-                {{-- todos.edit function call --}}
-                <a href="{{ route('todos.edit', $todos->id)}}" class="btn btn-primary btn-sm"">Edit</a>
-                {{-- todos.destroy function call --}}
-                <form action="{{ route('todos.destroy', $todos->id)}}" method="post" style="display: inline-block">
+                {{-- todo.edit function call --}}
+                <a href="{{ route('todos.edit', $todo->id)}}" class="btn btn-primary btn-sm"">Edit</a>
+                {{-- todo.destroy function call --}}
+                <form action="{{ route('todos.destroy', $todo->id)}}" method="post" style="display: inline-block">
                   @csrf
                   @method('DELETE')
                   <button class="btn btn-danger btn-sm" type="submit">Delete</button>
